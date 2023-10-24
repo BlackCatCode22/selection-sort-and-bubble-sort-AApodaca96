@@ -1,60 +1,85 @@
 #include <iostream>
+
 using namespace std;
 
-void bubbleSort(int arr[], int n) {
-    // Traverse through all array elements
-    for (int i = 0; i < n-1; i++) {
-        // Last i elements are already in place, no need to check them
-        for (int j = 0; j < n-i-1; j++) {
-            // Traverse the array from 0 to n-i-1
-            // Swap if the element found is greater than the next element
-            if (arr[j] > arr[j+1]) {
-                swap(arr[j], arr[j+1]);
+// Function to sort the array in ascending order using Bubble Sort
+void bubbleSortAscending(int array[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
             }
         }
     }
 }
 
-void selectionSort(int arr[], int n) {
-    int i, j, min_idx;
-
-    // Move the boundary of the unsorted subarray
-    for (i = 0; i < n-1; i++) {
-        // Find the minimum element in the unsorted array
-        min_idx = i;
-        for (j = i+1; j < n; j++) {
-            if (arr[j] < arr[min_idx]) {
-                min_idx = j;
+// Function to sort the array in descending order using Bubble Sort
+void bubbleSortDescending(int array[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (array[j] < array[j + 1]) {
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
             }
         }
-        // Swap the found minimum element with the first element
-        swap(arr[min_idx], arr[i]);
     }
 }
 
-
+// Function to sort the array in ascending order using Selection Sort
+void selectionSortAscending(int array[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;  // Changed variable name from min_idx to minIndex
+        for (int j = i + 1; j < n; j++) {
+            if (array[j] < array[minIndex]) {
+                minIndex = j;
+            }
+        }
+        int temp = array[minIndex];
+        array[minIndex] = array[i];
+        array[i] = temp;
+    }
+}
 
 int main() {
-    int myArray[] = {64, 34, 25, 12, 22, 11, 90};
-    int n = sizeof(myArray)/sizeof(myArray[0]);
-    bubbleSort(myArray, n);
-    cout << "This is the result of the Bubble Sort: \n";
-    for (int i=0; i < n; i++)
-        cout << myArray[i] << " ";
-    cout << "\n\n";
+    // Welcoming statement
+    cout << "Welcome to Angelo's Sorting Project!" << endl << endl;
 
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    int n02 = sizeof(arr)/sizeof(arr[0]);
-    selectionSort(arr, n02);
-    cout << "This is the result of the selection sort: \n";
-    for (int i=0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << "\n\n";
-    return 0;
+    int array[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(array) / sizeof(array[0]);
 
+    // Display the original array
+    cout << "Original array: ";
+    for (int i = 0; i < n; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 
+    // Sort and display the array in ascending order using Bubble Sort
+    bubbleSortAscending(array, n);
+    cout << "Bubble Sorted array in ascending order: ";
+    for (int i = 0; i < n; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 
+    // Sort and display the array in descending order using Bubble Sort
+    bubbleSortDescending(array, n);
+    cout << "Bubble Sorted array in descending order: ";
+    for (int i = 0; i < n; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+
+    // Sort and display the array in ascending order using Selection Sort
+    selectionSortAscending(array, n);
+    cout << "Selection Sorted array in ascending order: ";
+    for (int i = 0; i < n; i++) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 
     return 0;
 }
-
